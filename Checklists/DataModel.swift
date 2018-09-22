@@ -13,6 +13,7 @@ class DataModel {
     
     init() {
         loadChecklists()
+        registerDefaults()
     }
     
     func documentsDirectory() -> URL {
@@ -24,6 +25,14 @@ class DataModel {
     func dataFilePath() -> URL {
         return documentsDirectory().appendingPathComponent(
             "Checklists.plist")
+    }
+    
+    // This creates a new Dictionary instance and adds the value -1 for the key “ChecklistIndex”
+    
+    func registerDefaults() {
+        let dictionary = [ "ChecklistIndex": -1 ]
+        
+        UserDefaults.standard.register(defaults: dictionary)
     }
     
     // this method is now called saveChecklists()
