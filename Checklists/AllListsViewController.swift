@@ -11,16 +11,14 @@ import UIKit
 class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
 var dataModel: DataModel!
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         navigationController?.delegate = self
-        
-        //        If the value of the “ChecklistIndex” setting is -1, then the user was on the app’s main screen before the app was terminated
-        
-        let index = UserDefaults.standard.integer(
-            forKey: "ChecklistIndex")
-        if index != -1 {
+                //        If the value of the “ChecklistIndex” setting is -1, then the user was on the app’s main screen before the app was terminated
+        let index = dataModel.indexOfSelectedChecklist
+        if index >= 0 && index < dataModel.lists.count {
             let checklist = dataModel.lists[index]
             performSegue(withIdentifier: "ShowChecklist",
                          sender: checklist)
@@ -55,22 +53,19 @@ var dataModel: DataModel!
         }
     }
     
-    func navigationController(
-        _ navigationController: UINavigationController,
-        willShow viewController: UIViewController,
-        animated: Bool) {
-        
-        // Was the back button tapped?
+    func navigationController(_ navigationController: UINavigationController,willShow viewController: UIViewController, animated: Bool) {
         if viewController === self {
-            UserDefaults.standard.set(-1, forKey: "ChecklistIndex")
+            dataModel.indexOfSelectedChecklist = -1
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UserDefaults.standard.set(indexPath.row, forKey: "ChecklistIndex")
+     
+        dataModel.indexOfSelectedChecklist = indexPath.row
         
         let checklist = dataModel.lists[indexPath.row]
-        performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+        performSegue(withIdentifier: "ShowChecklist",
+                     sender: checklist)
     }
     
     override func prepare(for segue: UIStoryboardSegue,
