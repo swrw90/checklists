@@ -66,18 +66,18 @@
 		C721A826214B510E0018B226 /* Checklists */ = {
 			isa = PBXGroup;
 			children = (
-				C721A827214B510E0018B226 /* AppDelegate.swift */,
-				C721A829214B510E0018B226 /* ChecklistViewController.swift */,
-				C721A82E214B51120018B226 /* Assets.xcassets */,
-				C721A82B214B510E0018B226 /* Main.storyboard */,
-				C721A830214B51120018B226 /* LaunchScreen.storyboard */,
-				C721A833214B51120018B226 /* Info.plist */,
-				C721A839214B8B520018B226 /* ChecklistItem.swift */,
-				C721A83B214C62A60018B226 /* ItemDetailViewController.swift */,
 				C721A83D21504F1A0018B226 /* AllListsViewController.swift */,
+				C721A827214B510E0018B226 /* AppDelegate.swift */,
+				C721A82E214B51120018B226 /* Assets.xcassets */,
 				C721A83F21505FC50018B226 /* Checklist.swift */,
-				C76A797C2151B4410048A261 /* ListDetailViewController.swift */,
+				C721A839214B8B520018B226 /* ChecklistItem.swift */,
+				C721A829214B510E0018B226 /* ChecklistViewController.swift */,
 				C7B9B23621557BA6006B35E7 /* DataModel.swift */,
+				C721A833214B51120018B226 /* Info.plist */,
+				C721A83B214C62A60018B226 /* ItemDetailViewController.swift */,
+				C721A830214B51120018B226 /* LaunchScreen.storyboard */,
+				C76A797C2151B4410048A261 /* ListDetailViewController.swift */,
+				C721A82B214B510E0018B226 /* Main.storyboard */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";

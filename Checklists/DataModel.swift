@@ -14,6 +14,7 @@ class DataModel {
     init() {
         loadChecklists()
         registerDefaults()
+        handleFirstTime()
     }
     
     func documentsDirectory() -> URL {
@@ -30,9 +31,24 @@ class DataModel {
     // This creates a new Dictionary instance and adds the value -1 for the key “ChecklistIndex”
     
     func registerDefaults() {
-        let dictionary = [ "ChecklistIndex": -1 ]
+        let dictionary: [String:Any] = [ "ChecklistIndex": -1,
+                                         "FirstTime": true ]
         
         UserDefaults.standard.register(defaults: dictionary)
+    }
+    
+    func handleFirstTime() {
+        let userDefaults = UserDefaults.standard
+        let firstTime = userDefaults.bool(forKey: "FirstTime")
+        
+        if firstTime {
+            let checklist = Checklist(name: "List")
+            lists.append(checklist)
+            
+            indexOfSelectedChecklist = 0
+            userDefaults.set(false, forKey: "FirstTime")
+            userDefaults.synchronize()
+        }
     }
     
     // this method is now called saveChecklists()
@@ -57,6 +73,7 @@ class DataModel {
             do {
                 // You decode to an object of [Checklist] type to lists
                 lists = try decoder.decode([Checklist].self, from: data)
+                sortChecklists() 
             } catch {
                 print("Error decoding item array!")
             }
@@ -72,5 +89,11 @@ class DataModel {
             UserDefaults.standard.set(newValue,
                                       forKey: "ChecklistIndex")
         }
+    }
+    
+    func sortChecklists() {
+        lists.sort(by: { checklist1, checklist2 in
+            return checklist1.name.localizedStandardCompare(
+                checklist2.name) == .orderedAscending })
     }
 }
