@@ -9,9 +9,10 @@
 import UIKit
 
 class Checklist: NSObject, Codable {
-    init(name: String) {
-        self.name = name
-        super.init()
+    init(name: String, iconName: String = "No Icon") {
+    self.name = name
+    self.iconName = iconName
+    super.init()
     }
     
     var name = ""
