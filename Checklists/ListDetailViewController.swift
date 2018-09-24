@@ -21,6 +21,7 @@ class ListDetailViewController: UITableViewController,
 UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    @IBOutlet weak var iconImageView: UIImageView!
     
     weak var delegate: ListDetailViewControllerDelegate?
     
@@ -40,8 +41,13 @@ UITextFieldDelegate {
     
     // MARK:- TableView Delegates
     override func tableView(_ tableView: UITableView,
-                            willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+                               willSelectRowAt indexPath: IndexPath)
+        -> IndexPath? {
+            if indexPath.section == 1 {
+                return indexPath
+            } else {
+                return nil
+            }
     }
     
     override func viewWillAppear(_ animated: Bool) {

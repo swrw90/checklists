@@ -16,6 +16,7 @@ class Checklist: NSObject, Codable {
     
     var name = ""
     var items = [ChecklistItem]()
+    var iconName = "No Icon"
     
     func countUncheckedItems() -> Int {
         var count = 0

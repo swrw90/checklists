@@ -9,7 +9,7 @@
 import UIKit
 
 class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
-var dataModel: DataModel!
+    var dataModel: DataModel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -20,7 +20,8 @@ var dataModel: DataModel!
         super.viewDidAppear(animated)
         
         navigationController?.delegate = self
-                //        If the value of the “ChecklistIndex” setting is -1, then the user was on the app’s main screen before the app was terminated
+        //        If the value of the “ChecklistIndex” setting is -1, then the user was on the app’s main screen before the app was terminated
+        
         let index = dataModel.indexOfSelectedChecklist
         if index >= 0 && index < dataModel.lists.count {
             let checklist = dataModel.lists[index]
@@ -34,25 +35,25 @@ var dataModel: DataModel!
         return dataModel.lists.count
     }
     
-    override func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath)
-        -> UITableViewCell {
-            let cell = makeCell(for: tableView)
-            // Update cell informaiton
-            let checklist = dataModel.lists[indexPath.row]
-            cell.textLabel!.text = checklist.name
-            cell.accessoryType = .detailDisclosureButton
-            
-            let count = checklist.countUncheckedItems()
-            if checklist.items.count == 0 {
-                cell.detailTextLabel!.text = "(No Items)"
-            } else if count == 0 {
-                cell.detailTextLabel!.text = "All Done!"
-            } else {
-                cell.detailTextLabel!.text = "\(count) Remaining"
-            }
-            
-            return cell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = makeCell(for: tableView)
+        // Update cell informaiton
+        let checklist = dataModel.lists[indexPath.row]
+        cell.textLabel!.text = checklist.name
+        cell.accessoryType = .detailDisclosureButton
+        
+        let count = checklist.countUncheckedItems()
+        if checklist.items.count == 0 {
+            cell.detailTextLabel!.text = "(No Items)"
+        } else if count == 0 {
+            cell.detailTextLabel!.text = "All Done!"
+        } else {
+            cell.detailTextLabel!.text = "\(count) Remaining"
+        }
+        
+        cell.imageView!.image = UIImage(named: checklist.iconName)
+        
+        return cell
     }
     
     func makeCell(for tableView: UITableView) -> UITableViewCell {
@@ -73,7 +74,7 @@ var dataModel: DataModel!
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
+        
         dataModel.indexOfSelectedChecklist = indexPath.row
         
         let checklist = dataModel.lists[indexPath.row]
