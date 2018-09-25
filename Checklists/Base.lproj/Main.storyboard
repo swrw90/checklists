@@ -20,27 +20,36 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="H4t-bm-isy">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H4t-bm-isy" id="duC-fp-jbB">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H4t-bm-isy" id="duC-fp-jbB">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPo-05-g9b">
-                                            <rect key="frame" x="8" y="10" width="28" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPo-05-g9b">
+                                            <rect key="frame" x="8" y="8.6666666666666661" width="16" height="26.333333333333336"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="16" id="Je6-fp-YJ6"/>
+                                            </constraints>
                                             <string key="text" base64-UTF8="YES">
 FuKImg
 </string>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNn-dI-r7a">
-                                            <rect key="frame" x="34" y="11" width="218" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNn-dI-r7a">
+                                            <rect key="frame" x="31.999999999999996" y="11.333333333333336" width="41.666666666666657" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="QPo-05-g9b" firstAttribute="leading" secondItem="duC-fp-jbB" secondAttribute="leading" constant="8" id="OF2-sd-TmH"/>
+                                        <constraint firstItem="WNn-dI-r7a" firstAttribute="centerY" secondItem="duC-fp-jbB" secondAttribute="centerY" id="a68-5I-FMy"/>
+                                        <constraint firstItem="QPo-05-g9b" firstAttribute="centerY" secondItem="duC-fp-jbB" secondAttribute="centerY" id="ddR-dM-Hwf"/>
+                                        <constraint firstItem="WNn-dI-r7a" firstAttribute="leading" secondItem="QPo-05-g9b" secondAttribute="trailing" constant="8" id="hGn-gu-k1C"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WNn-dI-r7a" secondAttribute="trailing" id="oNd-kh-gpt"/>
+                                        <constraint firstAttribute="trailing" secondItem="QPo-05-g9b" secondAttribute="trailing" constant="306" id="rac-aF-RvZ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="4uU-3a-yNG" kind="show" identifier="EditItem" trigger="accessoryAction" id="lEh-Bd-1Gh"/>
@@ -82,9 +91,8 @@ FuKImg
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name Of The Item" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="an2-90-Zrk">
-                                                    <rect key="frame" x="16" y="6" width="288" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name Of The Item" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="an2-90-Zrk">
+                                                    <rect key="frame" x="8" y="6" width="143.66666666666666" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -93,6 +101,12 @@ FuKImg
                                                     </connections>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="an2-90-Zrk" secondAttribute="bottom" constant="7.6699999999999999" id="BQf-4E-Abs"/>
+                                                <constraint firstItem="an2-90-Zrk" firstAttribute="top" secondItem="oHR-Yc-cSI" secondAttribute="top" constant="6" id="LPN-MQ-u6W"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="an2-90-Zrk" secondAttribute="trailing" constant="8" id="Qwv-YO-Iv9"/>
+                                                <constraint firstItem="an2-90-Zrk" firstAttribute="leading" secondItem="oHR-Yc-cSI" secondAttribute="leading" constant="8" id="wK4-3A-gsO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
