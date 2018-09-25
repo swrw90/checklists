@@ -9,9 +9,12 @@ protocol itemDetailViewControllerDelegate: class {
 class ItemDetailViewController: UITableViewController, UITextFieldDelegate  {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    @IBOutlet weak var shouldRemindSwitch: UISwitch!
+    @IBOutlet weak var dueDateLabel: UILabel!
     
     weak var delegate: itemDetailViewControllerDelegate?
     var itemToEdit: ChecklistItem?
+    var dueDate = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +23,10 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate  {
             title = "Edit Item"
             textField.text = item.text
             doneBarButton.isEnabled = true
+            shouldRemindSwitch.isOn = item.shouldRemind
+            dueDate = item.dueDate
         }
+        updateDueDateLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,15 +39,20 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate  {
     }
     
     @IBAction func done() {
-        if let itemToEdit = itemToEdit {
-            itemToEdit.text = textField.text!
+        if let item = itemToEdit {
+            item.text = textField.text!
+            item.shouldRemind = shouldRemindSwitch.isOn
+            item.dueDate = dueDate
             delegate?.itemDetailViewController(self,
-                                            didFinishEditing: itemToEdit)
+                                            didFinishEditing: item)
             
         } else {
             let item = ChecklistItem()
             item.text = textField.text!
             item.checked = false
+            
+            item.shouldRemind = shouldRemindSwitch.isOn
+            item.dueDate = dueDate 
             delegate?.itemDetailViewController(self, didFinishAdding: item)
         }
     }
@@ -64,4 +75,12 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate  {
         doneBarButton.isEnabled = !newText.isEmpty
         return true
     }
+    
+    func updateDueDateLabel() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        dueDateLabel.text = formatter.string(from: dueDate)
+    }
+    
 }
