@@ -22,8 +22,6 @@ class ChecklistItem: NSObject, Codable {
         checked = !checked
     }
     
-
-    
     override init() {
         itemID = DataModel.nextChecklistItemID()
         super.init()
@@ -68,6 +66,4 @@ class ChecklistItem: NSObject, Codable {
     deinit {
         removeNotification()
     }
-    
 }
-

@@ -18,14 +18,12 @@ class DataModel {
     }
     
     func documentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory,
-                                             in: .userDomainMask)
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
     func dataFilePath() -> URL {
-        return documentsDirectory().appendingPathComponent(
-            "Checklists.plist")
+        return documentsDirectory().appendingPathComponent("Checklists.plist")
     }
     
     // This creates a new Dictionary instance and adds the value -1 for the key “ChecklistIndex”
@@ -55,11 +53,9 @@ class DataModel {
     func saveChecklists() {
         let encoder = PropertyListEncoder()
         do {
-            // You encode lists instead of "items”
-            
+            // Encode lists instead of "items”
             let data = try encoder.encode(lists)
-            try data.write(to: dataFilePath(),
-                           options: Data.WritingOptions.atomic)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
         } catch {
             print("Error encoding item array!")
         }
@@ -71,7 +67,7 @@ class DataModel {
         if let data = try? Data(contentsOf: path) {
             let decoder = PropertyListDecoder()
             do {
-                // You decode to an object of [Checklist] type to lists
+                // Decode to an object of [Checklist] type to lists
                 lists = try decoder.decode([Checklist].self, from: data)
                 sortChecklists() 
             } catch {
@@ -82,19 +78,16 @@ class DataModel {
     
     var indexOfSelectedChecklist: Int {
         get {
-            return UserDefaults.standard.integer(
-                forKey: "ChecklistIndex")
+            return UserDefaults.standard.integer(forKey: "ChecklistIndex")
         }
         set {
-            UserDefaults.standard.set(newValue,
-                                      forKey: "ChecklistIndex")
+            UserDefaults.standard.set(newValue, forKey: "ChecklistIndex")
         }
     }
     
     func sortChecklists() {
         lists.sort(by: { checklist1, checklist2 in
-            return checklist1.name.localizedStandardCompare(
-                checklist2.name) == .orderedAscending })
+            return checklist1.name.localizedStandardCompare(checklist2.name) == .orderedAscending })
     }
     
     class func nextChecklistItemID() -> Int {
@@ -104,5 +97,4 @@ class DataModel {
         userDefaults.synchronize()
         return itemID
     }
-    
 }

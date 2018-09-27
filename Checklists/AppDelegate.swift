@@ -11,38 +11,27 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    
     var window: UIWindow?
     let dataModel = DataModel()
     
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions:
-        [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        let navigationController = window!.rootViewController
-            as! UINavigationController
-        let controller = navigationController.viewControllers[0]
-            as! AllListsViewController
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let navigationController = window!.rootViewController as! UINavigationController
+        let controller = navigationController.viewControllers[0] as! AllListsViewController
         controller.dataModel = dataModel
         
         // Notification authorization
         let center = UNUserNotificationCenter.current()
-                center.delegate = self
+        center.delegate = self
         
         let content = UNMutableNotificationContent()
         content.title = "Hello!"
         content.body = "I am a local notification"
         content.sound = UNNotificationSound.default
         
-        let trigger = UNTimeIntervalNotificationTrigger(
-            timeInterval: 10,
-            repeats: false)
-        let request = UNNotificationRequest(
-            identifier: "MyNotification",
-            content: content,
-            trigger: trigger)
-        center.add(request)
+        let trigger = UNTimeIntervalNotificationTrigger( timeInterval: 10,repeats: false)
+        let request = UNNotificationRequest( identifier: "MyNotification",content: content,trigger: trigger)
         
+        center.add(request)
         return true
     }
     
@@ -72,14 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     // MARK:- User Notification Delegates
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
-        withCompletionHandler completionHandler:
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler:
         @escaping (UNNotificationPresentationOptions) -> Void) {
         print("Received local notification \(notification)")
     }
     
 }
-
-
