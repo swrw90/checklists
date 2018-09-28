@@ -18,17 +18,20 @@ class DataModel {
     }
     
     func documentsDirectory() -> URL {
+        //FileManager looks for a Documents directory in userDomainMask and returns array of urls as path to documents directory
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
     func dataFilePath() -> URL {
+        //returns string url file path to xml list object of saved checklists to be loaded
         return documentsDirectory().appendingPathComponent("Checklists.plist")
     }
     
     // This creates a new Dictionary instance and adds the value -1 for the key “ChecklistIndex”
     
     func registerDefaults() {
+        //TODO: find out why -1
         let dictionary: [String:Any] = [ "ChecklistIndex": -1,
                                          "FirstTime": true ]
         
@@ -37,15 +40,19 @@ class DataModel {
     
     func handleFirstTime() {
         let userDefaults = UserDefaults.standard
+        //looks for bool on userDefaults with key firstTime
         let firstTime = userDefaults.bool(forKey: "FirstTime")
         
         if firstTime {
+            //creates initial Checklist
             let checklist = Checklist(name: "List")
             lists.append(checklist)
             
+            //set index of selected checklist
             indexOfSelectedChecklist = 0
+            //change userDefaults bool for firstTime to false
             userDefaults.set(false, forKey: "FirstTime")
-            userDefaults.synchronize()
+
         }
     }
     
@@ -64,7 +71,9 @@ class DataModel {
     // this method is now called loadChecklists()
     func loadChecklists() {
         let path = dataFilePath()
+        //if data fails to initialize return nil, data success assign xml
         if let data = try? Data(contentsOf: path) {
+            //decodes data, plist in this case
             let decoder = PropertyListDecoder()
             do {
                 // Decode to an object of [Checklist] type to lists
@@ -86,6 +95,7 @@ class DataModel {
     }
     
     func sortChecklists() {
+        //sort array of checklists by name
         lists.sort(by: { checklist1, checklist2 in
             return checklist1.name.localizedStandardCompare(checklist2.name) == .orderedAscending })
     }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J1M-Zt-Lev">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J1M-Zt-Lev">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -348,7 +348,7 @@ FuKImg
                             <outlet property="delegate" destination="Hqz-IA-NV1" id="ktX-qz-cQG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Cecklist" largeTitleDisplayMode="never" id="g6i-Q8-rZe" customClass="AddChecklist">
+                    <navigationItem key="navigationItem" title="Add Checklist" largeTitleDisplayMode="never" id="g6i-Q8-rZe" customClass="AddChecklist">
                         <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="N6H-FT-cGo">
                             <connections>
                                 <action selector="cancel" destination="Hqz-IA-NV1" id="Owa-4g-xXr"/>
