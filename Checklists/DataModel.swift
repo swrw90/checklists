@@ -31,7 +31,7 @@ class DataModel {
     // This creates a new Dictionary instance and adds the value -1 for the key “ChecklistIndex”
     
     func registerDefaults() {
-        //TODO: find out why -1
+        //initial value of checklistIndex will be set to 0 on first load to view initial List
         let dictionary: [String:Any] = [ "ChecklistIndex": -1,
                                          "FirstTime": true ]
         

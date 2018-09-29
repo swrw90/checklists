@@ -44,9 +44,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
     }
     
     // MARK:- TableView Delegates
-    override func tableView(_ tableView: UITableView,
-                               willSelectRowAt indexPath: IndexPath)
-        -> IndexPath? {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
             if indexPath.section == 1 {
                 return indexPath
             } else {
@@ -81,26 +79,21 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
         if let checklist = checklistToEdit {
             checklist.name = textField.text!
             checklist.iconName = iconName
-            delegate?.listDetailViewController(self,
-                                               didFinishEditing: checklist)
+            delegate?.listDetailViewController(self, didFinishEditing: checklist)
         } else {
-            let checklist = Checklist(name: textField.text!,
-                iconName: iconName)
-            delegate?.listDetailViewController(self,
-                                               didFinishAdding: checklist)
+            let checklist = Checklist(name: textField.text!, iconName: iconName)
+            delegate?.listDetailViewController(self, didFinishAdding: checklist)
         }
     }
     
-    func iconPicker(_ picker: IconPickerViewController,
-                       didPick iconName: String) {
+    func iconPicker(_ picker: IconPickerViewController, didPick iconName: String) {
         self.iconName = iconName
         iconImageView.image = UIImage(named: iconName)
         navigationController?.popViewController(animated: true)
     }
     
     // MARK:- Navigation
-    override func prepare(for segue: UIStoryboardSegue,
-                          sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PickIcon" {
             let controller = segue.destination
                 as! IconPickerViewController
