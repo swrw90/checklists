@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Define structure for Checklist including count of checked items, icon for list and array of list items
 class Checklist: NSObject, Codable {
     init(name: String, iconName: String = "No Icon") {
         self.name = name

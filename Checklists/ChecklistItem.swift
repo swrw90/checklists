@@ -9,6 +9,7 @@
 import Foundation
 import UserNotifications
 
+// Defines structure for CheckList Items
 class ChecklistItem: NSObject, Codable {
     var text = ""
     var checked = false
@@ -22,11 +23,13 @@ class ChecklistItem: NSObject, Codable {
         checked = !checked
     }
     
+    //Set value of ChecklistItem itemID
     override init() {
         itemID = DataModel.nextChecklistItemID()
         super.init()
     }
     
+    //Add and remove notifications
     func scheduleNotification() {
         removeNotification()
         if shouldRemind && dueDate > Date() {

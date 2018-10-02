@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Defines initial App structure and setup
 class DataModel {
     var lists = [Checklist]()
     

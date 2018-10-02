@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// UITableViewController to manage Checklist view setup and Checklist state
 class ChecklistViewController: UITableViewController {
 //    var items = [ChecklistItem]()
     var checklist: Checklist!
